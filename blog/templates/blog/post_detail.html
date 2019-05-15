@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <h1 class="post__title">{{ post.title }}</h1>
+        <span class="post_create-date">{{ post.created_at | date:"Y-m-d f" }}</span>
+        <div class="post__text">{{ post.text | linebreaksbr }}</div>
+    </div>
+
+    <div class="comment">
+        <h3 class="comment-title">Comment</h3>
+        {%  for comment in post.comment_set.all %}
+            <div class="comment-list">
+                <span class="comment-list__name">{{ comment.name }}</span>
+                <span class="comment-list__date">{{ comment.created_at | date:"Y-m-d f" }}</span>
+                <p  class="comment-list__text">{{ comment.text | linebreaksbr }}</p>
+            </div>
+        {% endfor %}
+        <form class="comment-form" method="post" autocomplete="off">
+            {{ form.non_field_errors }}
+            <label class="comment-form__item">
+                <input class="input" type="text" name="name" placeholder="&nbsp;" required />
+                <span class="label">Name</span>
+                <span class="border"></span>
+            </label>
+            <label class="comment-form__item">
+                <textarea class="input" name="text" placeholder="&nbsp;" required></textarea>
+                <span class="label">Comment</span>
+                <span class="border"></span>
+            </label>
+            <button class="comment-form__button" type="submit">POST</button>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}

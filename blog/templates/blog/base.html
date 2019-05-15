@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Blog</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header-title">
+                    <a href="{% url 'blog:index' %}">Django blog</a>
+                </div>
+                <nav class="header-nav">
+                    <form class="header-nav__form" action="{% url 'blog:index' %}" method="get">
+                        <input type="text" name="keyword" placeholder="SEARCH" />
+                        <button type="submit">SEARCH</button>
+                    </form>
+                    <ul>
+                        {% for category in category_list %}
+                            <li><a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                        <!-- {% if user.is_superuser %} -->
+                        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                        <!-- {% endif %} -->
+                    </ul>
+                </nav>
+            </header>
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+                {% include 'blog/pagenation.html' %}
+            </div>
+            <footer class="footer">
+                <p class="footer__copyright">&copy; 2019 Piyo inc.</p>
+            </footer>
+        </div>
+    </body>
+</html>

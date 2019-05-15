@@ -1,0 +1,306 @@
+/**
+ * Common
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'New Gulim', 'arial', sans-serif
+}
+
+a {
+  position: relative;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+}
+
+a::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #333;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: transform .3s;
+}
+a:hover::after {
+  transform: scale(1, 1);
+}
+
+ul {
+  list-style: none;
+}
+
+/**
+ * body
+ */
+html, body {
+  width: 100%;
+  height:100%;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: auto !important;
+  height: 100%;
+  min-height: 100%;
+}
+
+/**
+ * Header
+ */
+.header {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  height: 100px;
+  justify-content: space-between;
+}
+
+.header-title {
+  font-size: 18px;
+}
+
+.header-nav ul {
+  display: flex;
+}
+
+.header-nav ul li {
+  margin: 0 10px;
+}
+
+/**
+ * Container
+ */
+.container {
+  margin: 0 auto;
+  padding: 20px 50px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+/**
+ * Post
+ */
+.post {
+  margin: 0 0 50px
+}
+
+.post__title {
+  margin-bottom: 30px;
+}
+
+.post_create-date {
+  display: inline-block;
+  margin-bottom: 50px;
+  font-size: 14px;
+}
+
+.post__text {
+  margin-bottom: 30px;
+  line-height: 2;
+}
+
+/**
+ * Comment
+ */
+.comment {
+  margin-bottom: 50px;
+  padding: 30px 0;
+  border-top: 1px solid #000000;
+}
+
+.comment-title {
+  margin-bottom: 30px
+}
+
+.comment-list {
+  margin-bottom: 20px;
+}
+
+.comment-list__name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.comment-list__date {
+  font-size: 12px;
+  color: #424242;
+}
+
+.comment-list__date:before {
+    content: '-';
+    margin: 0 5px 0 0;
+}
+
+.comment-list__text {
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+/**
+ * Comment Form
+ */
+/* .form-item {
+	position: relative;
+  margin-bottom: 30px;
+	width: 300px;
+}
+.form-item input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+}
+
+.form-item input[type='text']:focus,
+.form-item textarea {
+	outline: none;
+}
+
+.form-item textarea {
+  resize: vertical;
+  width:300px;
+  height:100px;
+  min-height: 40px;
+}
+
+.comment-form__text {
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+
+.comment-form__text:focus ~ .focus_line,
+.form-item.comment-form__text ~ .focus_line {
+	width: 100%;
+	transition: 0.4s;
+}
+.comment-form__text ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 4px;
+	left: 0;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+}
+
+.comment-form__text:focus ~ label,
+.form-item.comment-form__text ~ label {
+	top: -16px;
+  font-size: 12px;
+	transition: 0.3s;
+} */
+.comment-form__item {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+  width: 300px;
+}
+.comment-form__item .label {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-size: 16px;
+  color: #9098a9;
+  transform-origin: 0 0;
+  transition: all 0.2s ease;
+}
+.comment-form__item .border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: #07f;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: all 0.15s ease;
+}
+.comment-form__item .input {
+  -webkit-appearance: none;
+  width: 100%;
+  border: 0;
+  height: 48px;
+  font-size: 16px;
+  border-bottom: 1px solid #c8ccd4;
+  transition: all 0.15s ease;
+}
+
+.comment-form__item .input:not(:placeholder-shown) + span {
+  color: #5a667f;
+  transform: translateY(-26px) scale(0.75);
+}
+.comment-form__item .input:focus {
+  background: none;
+  outline: none;
+}
+.comment-form__item .input:focus + span {
+  color: #07f;
+  transform: translateY(-26px) scale(0.75);
+}
+.comment-form__item .input:focus + span + .border {
+  transform: scaleX(1);
+}
+
+/* Float Labels（フローティングラベル）におけるtextareaへの緊急処置 */
+.comment-form__item textarea.input {margin-top: 10px;}
+.comment-form__item textarea.input + span + span {bottom: 3px;}
+
+
+.comment-form__button {
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  color: #ffffff;
+  background: #000000;
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+.comment-form__button,
+.comment-form__button::before,
+.comment-form__button::after {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.comment-form__button:hover {
+  background-color: #07f;
+}
+
+/**
+ * Pagenation
+ */
+
+.pagenation ul {
+  display: flex;
+}
+
+.pagenation ul li {
+  margin: 10px;
+}
+
+/**
+ * Footer
+ */
+.footer{
+  position:absolute;
+  bottom:0;
+  padding: 20px;
+  width: 100%;
+  height:50px;
+}
+
+.footer__copyright {
+  font-size: 15px;
+  text-align: center;
+}
